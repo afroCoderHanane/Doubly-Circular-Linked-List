@@ -2,57 +2,31 @@
 #include "Cdbll.cpp"
 #include "Cdbll.h"
 using namespace std;
-int main() {
- 
-  //test functions
-   /* Cdbll<int> list;
-    list.insertFront(1);
-    list.insertFront(2);
-    list.insertEnd(3);
-    list.insertEnd(4);
-    list.deleteItem(2);
-    list.print();
-    cout << endl << endl;
-    list.iterateFront();
-    list.iterateBack();
-    list.emptylist();
-    cout << endl << endl;
-    list.iterateFront();
-    list.iterateBack();
-    if (list.isEmpty())
-    {
-        cout <<endl<< "list is empty now" << endl;
-    }
-    Cdbll<int>listcopy(list);
-    listcopy = list;
-    list.print();
-    cout <<endl<< "copylist is here below" << endl;
-    listcopy.print();
-    */
-
-
-    Cdbll<char> list;
-     Cdbll<char> listcopy;
+int main() 
+{
+    Cdbll<int> list;
+    Cdbll<int> listcopy;
     //listcopy,listcopy1(list);
     int choice;
-    char item;
-    cout << "Make your selection using 1..11" << endl;
-    cout << "1: insert an item from the front" << endl;
-    cout << "2: insert an item from the end" << endl;
-    cout << "3: delete an item " << endl;
-    cout << "4:search for an item" << endl;
-    cout << "5:check if the list is empty" << endl;
-    cout << "6: copy the list in another list using = " << endl;
-    cout << "7:Know the length of the list" << endl;
-    cout << "8:Make the list empty" << endl;
-    cout << "9: view the item in your list printer in increasing ordered form" << endl;
-    cout << "10: view the item in your list printer in decreasing ordered form" << endl;
-    cout << "-999: to Quit" << endl;
+    int item;
+    cout << "Make your selection using 1..11 or press -1 to quit" << endl;
+    cout << "1:  insert an item from the front" << endl;
+    cout << "2:  insert an item from the end" << endl;
+    cout << "3:  delete an item " << endl;
+    cout << "4:  search for an item" << endl;
+    cout << "5:  check if the list is empty" << endl;
+    cout << "6:  copy the list in another list using = " << endl;
+    cout << "7:  Know the length of the list" << endl;
+    cout << "8:  Make the list empty" << endl;
+    cout << "9:  view the item in your list printer in increasing ordered form" << endl;
+    cout <<"10: view the item in your list printer in decreasing ordered form" << endl;
+    cout <<"11: view the item in your copied list printer in decreasing ordered form" << endl;
+    cout <<"-1: to Quit" << endl;
     cout<<"---------------------------------"<<endl;
     //cout<<"Enter your selection"<<endl;
     //11cin >> choice;
 
-    while (choice!=-999)
+    while (choice!=-1)
     {   
         cout << "What is your selection" << endl;
         cin >> choice;
@@ -95,6 +69,8 @@ int main() {
               break;
           case 6:
               listcopy = list;
+              listcopy.print();
+              cout<<endl;
               break;
           case 7:
               cout << "length is: " << list.length()<<endl;
@@ -105,13 +81,22 @@ int main() {
           case 9:
               cout << "Iteration towards the front" << endl;
               list.iterateFront();
+              cout<<endl;
               break;
           case 10:
+               
               cout << "Iteration towards the Back" << endl;
               list.iterateBack();
+              cout<<endl;
               break;
-          case -999:
-              exit(0);
+          case 11:
+               
+              cout << "Iteration towards the Back of the copied list" << endl;
+              listcopy.iterateBack();
+              cout<< endl;
+              break;
+          case -1:
+               exit(0);
                break;
           default:
               cout << "No selection" << endl;

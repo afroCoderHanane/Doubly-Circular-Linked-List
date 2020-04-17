@@ -7,6 +7,7 @@ Cdbll<T> ::Cdbll()
     last = NULL;
     count = 0;
 }
+
 //function to destroy all the node
 template <class T>
 void Cdbll<T>::destroy()
@@ -31,12 +32,14 @@ void Cdbll<T>::destroy()
     last = NULL;// last == NULL
     count = 0;
 }
+
 //destructor
 template<class T>
 Cdbll<T> :: ~Cdbll()
 {
     destroy();
 }
+
 //function to insert at the front 
 template< class T>
 void Cdbll<T>::insertFront(const T& item)
@@ -64,6 +67,7 @@ void Cdbll<T>::insertFront(const T& item)
     }
     count++;
 }
+
 // function to insert at the Back
 template <class T>
 void Cdbll<T>::insertEnd(const T& item)
@@ -91,6 +95,7 @@ void Cdbll<T>::insertEnd(const T& item)
     }
     count++;
 }
+
 //print function 
 template< class T>
 void Cdbll<T>::print()
@@ -111,14 +116,17 @@ void Cdbll<T>::print()
         } while (current!=first );
     }
 }
+
+
 //copylist function for operator = equal and copy constructor
 template<class T>
 void Cdbll<T> ::copylist(const Cdbll<T>& otherlist)
 {    
     int count1 ;
+
     count1 = counterlist();
-    if (first != NULL) //if the list is nonempty, make it empty
-        destroy();
+    if (first != NULL) destroy(); //if the list is nonempty, make it empty
+        
     if (otherlist.first == NULL) //otherlist is empty
     {
         first = NULL;
@@ -133,33 +141,36 @@ void Cdbll<T> ::copylist(const Cdbll<T>& otherlist)
         first->value = otherlist.first->value;
         current = first;
         currentother = otherlist.first;
-        //current->value = currentother->value;
         currentother = currentother->next;
+       // cout<<"first copy"<<first->value<<endl;
        while (currentother != otherlist.first)
        {
            current->next = new Node<T>;
-           current->value = currentother->value;
+           current->next->value = currentother->value;
            current->next->prev = current;
            current = current->next;
            currentother = currentother->next;
+           //cout<<"copied"<<current->value<<endl;
        }
-       current->next = first;
-       first->prev = current;
+       last = current;
+       last->next = first;
+       first->prev = last;
        count = otherlist.count;
-    }//end else
-    
+    }//end else   
 }
-// class count function 
+
+//  Count function 
 template<class T>
 int Cdbll<T> ::counterlist()
 {
-    return count;
+    return count;//return the number of element inside the doubly circular linked list 
 }
+
+//client side count function
 template<class T>
-//client count function
 int Cdbll<T> ::length()
 {
-  int a =  counterlist();
+  int a =  counterlist(); //function that the client call access to knwow the length of his list
   return a;
 
 }
@@ -168,7 +179,7 @@ int Cdbll<T> ::length()
 template<class T>
 Cdbll<T> ::Cdbll(const Cdbll<T>& otherlist)
 {
-    copylist(otherlist);
+    copylist(otherlist); 
 }
 
 
@@ -176,21 +187,23 @@ Cdbll<T> ::Cdbll(const Cdbll<T>& otherlist)
 template<class T>
 void Cdbll<T> :: operator=(const Cdbll<T> & otherlist)
 {
+   // destroy();
     copylist(otherlist);
 }
 // function to delete Node
 template<class T>
 void Cdbll<T> ::deleteItem(const T& item)
-{
+{   
+    int l= counterlist();//variable to stop the loop if the value is not in the list
     Node<T>* p;
     Node<T>* temp;
     Node<T>* q;
     if (first == NULL)
         return;
-   p = new Node <T>;
+    p = new Node <T>;
     p = first;
     q = first;
-    while (p->value != item)
+    while (p->value != item && l!=0)
     {
         if (p->next == first)
         {
@@ -200,7 +213,7 @@ void Cdbll<T> ::deleteItem(const T& item)
 
         q = p;
         p = p->next;
-
+        l--;
     }// end loop
 
     if (p->next == first && q == NULL) // check only if one node is available
@@ -236,12 +249,14 @@ void Cdbll<T> ::deleteItem(const T& item)
     }
     count--;
 }
+
 //empty the list;
 template<class T>
 void Cdbll<T> ::emptylist()
 {
     destroy();
 }
+
 //function to search for item 
 template<class T>
 bool Cdbll<T> ::searchItem( T item)
@@ -266,13 +281,17 @@ bool Cdbll<T> ::searchItem( T item)
         return found;
     }
 }
+
 //function to check if the list is NULL
 template<class T>
 bool Cdbll<T> ::isEmpty()
 {
     return(first == NULL);
 }
+
+
 //iterate functions
+
 template<class T>
 void Cdbll<T> ::iterateFront()
 {
@@ -289,6 +308,7 @@ void Cdbll<T> ::iterateFront()
         }
     } while (current != first);
 }
+
 template<class T>
 void Cdbll<T> ::iterateBack()
 {
@@ -296,7 +316,7 @@ void Cdbll<T> ::iterateBack()
     current = last;
     do
     {
-        if (first == NULL)
+        if (current == NULL)
             cout << "empty list: I cannot Iterate" << endl;
         else
         {
