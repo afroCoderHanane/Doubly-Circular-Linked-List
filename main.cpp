@@ -23,12 +23,11 @@ int main()
     cout <<"11: view the item in your copied list printer in decreasing ordered form" << endl;
     cout <<"-1: to Quit" << endl;
     cout<<"---------------------------------"<<endl;
-    //cout<<"Enter your selection"<<endl;
-    //11cin >> choice;
+    
 
     while (choice!=-1)
     {   
-        cout << "What is your selection" << endl;
+        cout << "select" << endl;
         cin >> choice;
         switch (choice)
         { 
@@ -77,6 +76,7 @@ int main()
               break;
           case 8:
               list.emptylist();
+              cout<<"list was emptied successfully"<<endl;
               break;
           case 9:
               cout << "Iteration towards the front" << endl;

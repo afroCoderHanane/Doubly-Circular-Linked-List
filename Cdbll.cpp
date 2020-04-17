@@ -107,12 +107,11 @@ void Cdbll<T>::print()
         cout << " The list is empty" << endl;
     }
     else
-    {
+    {   cout<<"copy: ";
         do
-        {
-            cout << " The list element are " << current->value << " ";
+        {   
+            cout  << current->value << " ";
             current = current->next;
-           // count1--;
         } while (current!=first );
     }
 }
